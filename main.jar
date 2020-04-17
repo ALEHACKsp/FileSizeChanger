@@ -1,0 +1,26 @@
+import java.io.RandomAccessFile;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+
+public class Main
+{
+    public static void main(final String[] args) {
+        for (String again = "Yes"; again.equals("Yes") || again.equals("yes"); again = JOptionPane.showInputDialog("Want to use again? - Yes or No ?")) {
+            JOptionPane.showMessageDialog(null, "Welcome to Fake File Chooser - Made by lhaasper");
+            final String path = JOptionPane.showInputDialog("Enter Full Path");
+            if (path.equals("")) {
+                return;
+            }
+            final String size = JOptionPane.showInputDialog("Enter Size in MB");
+            JOptionPane.showMessageDialog(null, "I Did the Job, now Check the file (refresh)");
+            RandomAccessFile r = null;
+            try {
+                r = new RandomAccessFile(path, "rw");
+                r.setLength(Integer.parseInt(size) * 1024 * 1024);
+                r.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
